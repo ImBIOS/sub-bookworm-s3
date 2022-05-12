@@ -17,7 +17,7 @@ const findTextAndReturnRemainder = (target: string, variable: string) => {
 };
 
 export default async function handler(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   const { data } = await axios.get(
@@ -28,9 +28,9 @@ export default async function handler(
   const html = JSON.parse(findAndClean);
   console.log(html.contents);
   const videoCount =
-    html.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
-      .sectionListRenderer.contents[0].itemSectionRenderer.contents[0]
-      .playlistVideoListRenderer.contents.length;
+    html?.contents?.twoColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer
+      ?.content?.sectionListRenderer?.contents[0]?.itemSectionRenderer
+      ?.contents[0]?.playlistVideoListRenderer?.contents?.length;
 
   const lastScraped = new Date().toLocaleString();
 
