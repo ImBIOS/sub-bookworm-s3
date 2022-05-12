@@ -26,13 +26,22 @@ export default async function handler(
 
   const findAndClean = findTextAndReturnRemainder(data, "var ytInitialData =");
   const html = JSON.parse(findAndClean);
-  console.log(html.contents);
+
+  const playlistVideoListRenderer =
+    html.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
+      .sectionListRenderer.contents[0].itemSectionRenderer.contents[0]
+      .playlistVideoListRenderer;
+  const messageRenderer =
+    html.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
+      .sectionListRenderer.contents[0].itemSectionRenderer.contents[0]
+      .messageRenderer.text.simpleText;
+
   const videoCount =
-    html?.contents?.twoColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer
-      ?.content?.sectionListRenderer?.contents[0]?.itemSectionRenderer
-      ?.contents[0]?.playlistVideoListRenderer?.contents?.length;
+    playlistVideoListRenderer !== undefined
+      ? playlistVideoListRenderer.contents.length
+      : messageRenderer.charAt(0);
 
   const lastScraped = new Date().toLocaleString();
 
-  res.status(200).json({ videoCount: html, lastScraped });
+  res.status(200).json({ videoCount, lastScraped });
 }
