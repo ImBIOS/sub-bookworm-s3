@@ -34,5 +34,5 @@ export default async function handler(
 
   const lastScraped = new Date().toLocaleString();
 
-  res.status(200).json({ videoCount, lastScraped });
+  res.status(200).json({ videoCount: html, lastScraped });
 }
