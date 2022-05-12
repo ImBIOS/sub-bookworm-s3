@@ -26,6 +26,7 @@ export default async function handler(
 
   const findAndClean = findTextAndReturnRemainder(data, "var ytInitialData =");
   const html = JSON.parse(findAndClean);
+  console.log(html);
   const videoCount =
     html.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
       .sectionListRenderer.contents[0].itemSectionRenderer.contents[0]
