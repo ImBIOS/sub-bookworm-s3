@@ -28,10 +28,14 @@ const Sub2: NextPage = () => {
     <div className={styles.container}>
       <main className={styles.main}>
         <div>
-          Data: {data.videoCount !== "" ? data.videoCount : "Loading..."}
+          {data.videoCount !== ""
+            ? data.videoCount === "10"
+              ? "Asendance of Bookworm S3 is complete! You can watch it here: https://www.youtube.com/playlist?list=PLwLSw1_eDZl1pGYxuxFAg3A4Y5rDCugXg"
+              : "Asendance of Bookworm S3 is not complete yet. Don't watch it yet or you will think it while you sleep."
+            : "Loading..."}
         </div>
         <div>
-          Last scraped:{" "}
+          Last updated:{" "}
           {data.lastScraped !== "" ? data.lastScraped : "Loading..."}
         </div>
       </main>
