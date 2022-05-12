@@ -34,12 +34,12 @@ export default async function handler(
   const messageRenderer =
     html.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
       .sectionListRenderer.contents[0].itemSectionRenderer.contents[0]
-      .messageRenderer.text.simpleText;
+      .messageRenderer;
 
   const videoCount =
     playlistVideoListRenderer !== undefined
       ? playlistVideoListRenderer.contents.length
-      : messageRenderer.charAt(0);
+      : messageRenderer.text.simpleText.charAt(0);
 
   const lastScraped = new Date().toLocaleString();
 
