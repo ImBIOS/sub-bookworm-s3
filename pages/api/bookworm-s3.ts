@@ -39,7 +39,7 @@ export default async function handler(
   const videoCount =
     playlistVideoListRenderer !== undefined
       ? playlistVideoListRenderer.contents.length
-      : messageRenderer.text.simpleText.charAt(0);
+      : parseInt(messageRenderer.text.simpleText.charAt(0));
 
   const lastScraped = new Date().toLocaleString();
 
